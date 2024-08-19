@@ -55,7 +55,7 @@ def get_user_index(user_id: int):
         if users[i].id == user_id:
             user_ind = i
             break
-    if user_ind:
+    if user_ind is not None:
         return user_ind
     else:
         raise HTTPException(status_code=404, detail=f'User {user_id} was not found')
