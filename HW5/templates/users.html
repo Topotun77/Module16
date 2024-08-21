@@ -1,0 +1,72 @@
+{% extends 'main.html'%}
+{% block crud_container %}
+    <section class="container-fluid">
+        <form method="post" action="/user">
+            <div class="`col-auto">
+                <div class="input-group mb-3">
+                    <input type="text" name="username" value="{{text1}}" class="form-control"
+                    placeholder="Введите имя пользователя" aria-label="Имя пользователя: "
+                    aria-describedby="button-addon2"/>
+                    <input type="text" name="age" value="{{text2}}" class="form-control"
+                    placeholder="Введите возраст" aria-label="Возраст: "
+                    aria-describedby="button-addon3"/>
+                    <button class="btn btn-online-primary" type="submit" id="button-addon3"
+                    data-mdb-ripple-color="dark">
+                        Добавить
+                    </button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    {% if user %}
+        <article class="card container fluid">
+            <form method="get" action="/delete/{{user.id}}">
+                <br>
+                <h2 aria-describedby="delete"> ID: {{user.id}}</h2>
+                <p>
+                    Имя пользователя: <strong>{{user.username}}</strong>
+                    <br>
+                    Возраст: <strong>{{user.age}}</strong>
+                </p>
+                <button class="btn btn-primary"
+                        onclick="return confirm('Вы действительно хотите удалить {{user.username}}?');">
+                    Удалить пользователя
+                </button>
+            </form>
+        </article>
+
+    {% else %}
+            <section class="container-fluid">
+                <h2 align="center"> Users </h2>
+                <br>
+                <div class="card">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">username</th>
+                                <th scope="col">age</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for usr in users %}
+                            <tr>
+                                <th scope="row">{{usr.id}}</th>
+                                <td><a href="/users/{{usr.id}}"> {{usr.username}} </a></td>
+                                <td>{{usr.age}}</td>
+                                <td>
+                                    <a data-confirm="Вы уверены?" data-method="delete" href="/delete/{{usr.id}}"
+                                       onclick="return confirm('Вы действительно хотите удалить {{usr.username}}?');">
+                                        Удалить
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+    {% endif %}
+{% endblock %}
