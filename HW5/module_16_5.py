@@ -90,7 +90,7 @@ async def delete_user(request: Request,
         user_id: Annotated[int, Path(ge=1, le=100, description='Введите id пользователя', example=1)])\
         -> HTMLResponse:
     """
-    Удаление пользователя пользователе
+    Удаление пользователя
     """
     try:
         delete_user_fn(user_id)

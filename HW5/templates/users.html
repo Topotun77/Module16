@@ -10,7 +10,7 @@
                     <input type="text" name="age" value="{{text2}}" class="form-control"
                     placeholder="Введите возраст" aria-label="Возраст: "
                     aria-describedby="button-addon3"/>
-                    <button class="btn btn-online-primary" type="submit" id="button-addon3"
+                    <button class="btn btn-outline-primary" type="submit" id="button-addon3"
                     data-mdb-ripple-color="dark">
                         Добавить
                     </button>
@@ -38,12 +38,12 @@
 
     {% else %}
             <section class="container-fluid">
-                <h2 align="center"> Users </h2>
+                <h2 align="center"> Пользователи </h2>
                 <br>
                 <div class="card">
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead class="thead-light">
-                            <tr>
+                            <tr class="table-primary">
                                 <th scope="col">ID</th>
                                 <th scope="col">username</th>
                                 <th scope="col">age</th>
@@ -57,7 +57,7 @@
                                 <td><a href="/users/{{usr.id}}"> {{usr.username}} </a></td>
                                 <td>{{usr.age}}</td>
                                 <td>
-                                    <a data-confirm="Вы уверены?" data-method="delete" href="/delete/{{usr.id}}"
+                                    <a title="Вы уверены?" data-method="delete" href="/delete/{{usr.id}}"
                                        onclick="return confirm('Вы действительно хотите удалить {{usr.username}}?');">
                                         Удалить
                                     </a>
